@@ -1,0 +1,66 @@
+Countries: 38
+Continents: 8
+avg counties/continent: 4.75
+
+Scandinavia:
+- Norway
+- Sweden
+- Denmark
+- Finland
+- 3 Troops
+
+Eastern Bloc:
+- Russia
+- Belarus
+- Latvia
+- Lithuania
+- Estonia
+- Ukrainia
+- 5 Troops
+
+Middle Europe:
+- Germany
+- Netherlands
+- Belgium
+- Austria
+- Switzerland
+- Italy
+- 5 Troops
+
+Pyrenees:
+- Portugal
+- Spain
+- France
+- 2 Troops
+
+Czechoslovakia:
+- Poland
+- Chech Republic
+- Slovakia
+- Hungary
+- 3 Troops
+
+Ottoman Empire:
+- Moldavia
+- Bulgaria
+- Romania
+- Greece
+- Turkey
+- 4 Troops
+
+Balkan:
+- Slovenia
+- Serbia
+- Bosnia and Herzigowina
+- Croatia
+- Albania
+- Kosovo
+- North Mazedonia
+- Montenegro
+- 7 Troops
+
+English Empire:
+- Iceland
+- Ireland
+- United Kingdom
+- 2 Troops

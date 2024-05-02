@@ -1,0 +1,65 @@
+body{
+    background-color: lightblue;
+}
+
+#map {
+    width: 766px;
+    height: 768px;
+    background-image: url("./map/Europe_map_see_routes.png");
+}
+
+.country {
+    position: absolute;
+    width: 768px;
+    height: 766px;
+    background: no-repeat;
+    pointer-events: auto;
+}
+
+.white {
+    filter: invert(95%) sepia(95%) saturate(35%) hue-rotate(63deg) brightness(107%) contrast(100%);
+}
+
+.yellow {
+    filter: invert(95%) sepia(95%) saturate(1000%) hue-rotate(10deg) brightness(100%) contrast(100%);
+}
+
+.blue {
+    filter: none;
+}
+
+.green {
+    filter: invert(26%) sepia(89%) saturate(1583%) hue-rotate(95deg) brightness(96%) contrast(106%);
+}
+
+.gray {
+    filter: invert(0) sepia(0) saturate(0) hue-rotate(0) brightness(0) contrast(0);
+}
+
+.red {
+    filter: invert(16%) sepia(99%) saturate(7404%) hue-rotate(4deg) brightness(95%) contrast(118%);
+}
+
+.content{
+    z-index: 1000;
+    color: black;
+    position: absolute;
+}
+
+.clicked {
+    -webkit-filter: drop-shadow(2px 2px 0 black)
+    drop-shadow(-2px -2px 0 black);
+    filter: drop-shadow(2px 2px 0 black)
+    drop-shadow(-2px -2px 0 black);
+}
+
+body{
+    margin: 0;
+    width: 100vw;
+    height: 100vh;
+}
+
+html, body {
+    overflow-x: hidden;
+    overflow-y: hidden;
+}
