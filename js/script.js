@@ -11,6 +11,10 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 async function startMap(map, players)
 {
+    const worldMap = document.getElementById('map');
+    worldMap.style.backgroundImage = `url("../${map}/sea-routes.png")`;
+    console.log(`url("../${map}/sea_routes.png")`);
+
     let countries = await initCountries(map);
     countries = delegateTroops(players, countries);
     update(countries, map);
@@ -78,17 +82,7 @@ function update(countries, map)
                         }
 
                         const name = img.src.replace(".png", "").split("/")[5];
-                        logName(name);
-
-                        const elementContainer = document.getElementById(name);
-                        if(elementContainer.classList.contains("clicked"))
-                        {
-                            elementContainer.classList.remove("clicked");
-                        }
-                        else
-                        {
-                            elementContainer.classList.add("clicked");
-                        }
+                        onClickCountry(name);
                     }
                 };
 
@@ -99,8 +93,18 @@ function update(countries, map)
     });
 }
 
-function logName(name)
+function onClickCountry(name)
 {
+    const elementContainer = document.getElementById(name);
+    if(elementContainer.classList.contains("clicked"))
+    {
+        elementContainer.classList.remove("clicked");
+    }
+    else
+    {
+        elementContainer.classList.add("clicked");
+    }
+
     console.log("clicked on: " + name);
 }
 

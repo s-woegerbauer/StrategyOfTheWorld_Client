@@ -5,7 +5,6 @@ body{
 #map {
     width: 766px;
     height: 768px;
-    background-image: url("./map/Europe_map_see_routes.png");
 }
 
 .country {
