@@ -1,4 +1,4 @@
-const defaultUrl = 'https://localhost:3000';
+const defaultUrl = 'https://localhost:5128';
 
 function login()
 {
@@ -37,7 +37,7 @@ function register()
 
 function host()
 {
-    fetch(defaultUrl + `/Lobby/Host`, {
+    fetch(defaultUrl + `/Lobby/Create`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -51,7 +51,7 @@ function join()
 {
     const gameCode = document.getElementById('gameCode').value;
 
-    fetch(defaultUrl + `/Player/JoinLobby?`, {
+    fetch(defaultUrl + `/Player/JoinLobby`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'

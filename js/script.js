@@ -33,8 +33,8 @@ function update(countries, map)
         contentContainer.classList.add('content');
         let textWrapper = document.createElement("span");
         textWrapper.textContent = countries[i].troops;
-        textWrapper.style.paddingTop = countries[i].posY + "px";
-        textWrapper.style.paddingLeft = countries[i].posX + "px";
+        textWrapper.style.top = countries[i].posY + "px";
+        textWrapper.style.left = countries[i].posX + "px";
         textWrapper.style.position = "absolute";
         textWrapper.style.zIndex = "100";
         contentContainer.appendChild(textWrapper);
