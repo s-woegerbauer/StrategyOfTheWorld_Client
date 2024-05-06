@@ -1,4 +1,4 @@
-class Game {
+export class Game {
     constructor(players, countries, map) {
         this.players = players;
         this.countries = countries;
@@ -6,8 +6,7 @@ class Game {
         this.map = map;
     }
 
-    async startMap()
-    {
+    async startMap() {
         const worldMap = document.getElementById('map');
         worldMap.style.backgroundImage = `url("../${this.map}/sea-routes.png")`;
         this.countries = this.delegateTroops();
@@ -57,15 +56,11 @@ class Game {
                     img.src = element.style.backgroundImage.replace('url("', '').replace('")', '');
 
                     img.onload = function () {
-                        function onClickCountry(name)
-                        {
+                        function onClickCountry(name) {
                             const elementContainer = document.getElementById(name);
-                            if(elementContainer.classList.contains("clicked"))
-                            {
+                            if (elementContainer.classList.contains("clicked")) {
                                 elementContainer.classList.remove("clicked");
-                            }
-                            else
-                            {
+                            } else {
                                 elementContainer.classList.add("clicked");
                             }
 
@@ -99,8 +94,7 @@ class Game {
         });
     }
 
-    delegateTroops()
-    {
+    delegateTroops() {
         const troopsPerPlayer = this.getTroops(this.players.length);
 
         // =============================== Every Country gets one troop ===============================
@@ -108,14 +102,12 @@ class Game {
         console.log(this.countries.length / this.players.length)
         const left = new Array(this.players.length).fill(countriesPerColor);
 
-        for(let i = 0; i < this.countries.length - (countriesPerColor * this.players.length); i++)
-        {
+        for (let i = 0; i < this.countries.length - (countriesPerColor * this.players.length); i++) {
             left[i]++;
         }
         const leftRec = Array.from(left);
 
-        for(let countryIndex = 0; countryIndex < this.countries.length; countryIndex++)
-        {
+        for (let countryIndex = 0; countryIndex < this.countries.length; countryIndex++) {
             let rnd;
 
             do {
@@ -131,10 +123,8 @@ class Game {
 
 
         // ================================ Rest is randomly delegated ================================
-        for(let i = 0; i < this.players.length; i++)
-        {
-            for(let j = 0; j < troopsPerPlayer - leftRec[i]; j++)
-            {
+        for (let i = 0; i < this.players.length; i++) {
+            for (let j = 0; j < troopsPerPlayer - leftRec[i]; j++) {
                 this.countries[this.getIndexOfRandomCountryOfPlayer(this.players[i], this.countries)].troops++;
             }
         }
@@ -143,17 +133,14 @@ class Game {
         return this.countries;
     }
 
-    getIndexOfRandomCountryOfPlayer(color)
-    {
+    getIndexOfRandomCountryOfPlayer(color) {
         const count = this.countries.filter(value => value.color === color).length;
         const rnd = Math.floor(Math.random() * count);
         let curI = 0;
 
-        for(let i = 0; i < this.countries.length; i++)
-        {
-            if(this.countries[i].color === color)
-            {
-                if(curI === rnd)
+        for (let i = 0; i < this.countries.length; i++) {
+            if (this.countries[i].color === color) {
+                if (curI === rnd)
                     return i;
 
                 curI++;
@@ -161,10 +148,8 @@ class Game {
         }
     }
 
-    getTroops(amountOfPlayers)
-    {
-        switch (amountOfPlayers)
-        {
+    getTroops(amountOfPlayers) {
+        switch (amountOfPlayers) {
             case 2:
                 return 40;
             case 3:
@@ -185,63 +170,12 @@ class Game {
         return 0;
     }
 
-    log()
-    {
+    log() {
         let newCountries = this.countries.sort((a, b) => {
             return a.color.localeCompare(b.color);
         });
-        for(let i = 0; i < newCountries.length; i++)
-        {
+        for (let i = 0; i < newCountries.length; i++) {
             console.log(newCountries[i].name + " | " + newCountries[i].color + " | " + newCountries[i].troops)
         }
     }
 }
-
-document.addEventListener('DOMContentLoaded', async () => {
-    let players = new Array(5);
-    players[0] = "white";
-    players[1] = "blue";
-    players[2] = "yellow";
-    players[3] = "red";
-    players[4] = "green";
-
-    const game = new Game(players, await initCountries("Europe"), "Europe");
-
-    await game.startMap();
-});
-
-function initCountries(map) {
-    return new Promise((resolve, reject) => {
-        this.readJSON(map + "/init.json")
-            .then(data => {
-                let initializedCountries = new Array(data.length)
-                let i = 0;
-
-                for(const country of data) {
-                    initializedCountries[i] = ({
-                        name: country.name,
-                        posX: country.posX,
-                        posY: country.posY,
-                        color: "",
-                        troops: 0
-                    });
-                    i++;
-                }
-
-                resolve(initializedCountries);
-            })
-            .catch(error => {
-                console.error('Error initializing countries:', error);
-                reject(error);
-            });
-    });
-}
-
-function readJSON(path) {
-    return fetch(path)
-        .then(response => response.json())
-        .catch(error => {
-            console.error('Error reading JSON:', error);
-        });
-}
-
