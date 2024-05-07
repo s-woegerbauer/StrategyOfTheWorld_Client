@@ -4,19 +4,20 @@ body{
     align-items: center;
     height: 100vh;
     margin: 0;
-    background-color: lightblue;
+    background-color: lightblue !important;
 }
 
+
 #map {
-    width: 766px;
-    height: 768px;
+    width: 770px;
+    height: 770px;
     border: 2px solid black;
 }
 
 .country {
     position: absolute;
-    width: 768px;
-    height: 766px;
+    width: 766px;
+    height: 768px;
     background: no-repeat;
     pointer-events: auto;
 }
@@ -87,4 +88,24 @@ html, body {
 
 .continent-green {
     filter: drop-shadow(0 0 5px green) invert(26%) sepia(89%) saturate(1583%) hue-rotate(95deg) brightness(96%) contrast(106%);
+}
+
+.rainbow {
+    animation: huerotate 6s infinite linear;
+    filter: hue-rotate(360deg);
+}
+
+@keyframes huerotate {
+    0% {
+        filter: hue-rotate(0deg);
+    }
+    100% {
+        filter: hue-rotate(360deg);
+    }
+}
+
+#settings {
+    position: absolute;
+    top: 5%;
+    right: 5%;
 }

@@ -9,6 +9,10 @@ document.addEventListener('DOMContentLoaded', async () => {
     players[4] = "green";
 
     const game = new Game(players, await initCountries("Europe"), "Europe");
+
+    document.getElementById('flexSwitchCheckRainbow').addEventListener('change', function() {
+        checkRainbowMode();
+    });
 });
 
 function initCountries(map) {
@@ -46,3 +50,15 @@ function readJSON(path) {
         });
 }
 
+function checkRainbowMode()
+{
+    if(document.getElementById("flexSwitchCheckRainbow").checked)
+    {
+        document.getElementById("map").classList.add("rainbow");
+    }
+
+    else
+    {
+        document.getElementById("map").classList.remove("rainbow");
+    }
+}
