@@ -1,0 +1,90 @@
+{
+    "continents": [
+        {
+            "name": "Scandinavia",
+            "countries": [
+                "Norway",
+                "Sweden",
+                "Denmark",
+                "Finland"
+            ],
+            "bonus": 3
+        },
+        {
+            "name": "EasternBloc",
+            "countries": [
+                "Russia",
+                "Belarus",
+                "Latvia",
+                "Lithuania",
+                "Estonia",
+                "Ukrainian"
+            ],
+            "bonus": 5
+        },
+        {
+            "name": "MiddleEurope",
+            "countries": [
+                "Germany",
+                "Netherlands",
+                "Belgium",
+                "Austria",
+                "Switzerland",
+                "Italy"
+            ],
+            "bonus": 5
+        },
+        {
+            "name": "Pyrenees",
+            "countries": [
+                "Portugal",
+                "Spain"
+            ],
+            "bonus": 2
+        },
+        {
+            "name": "Czechoslovakia",
+            "countries": [
+                "Poland",
+                "Czech",
+                "Slovakia",
+                "Hungary"
+            ],
+            "bonus": 3
+        },
+        {
+            "name": "OttomanEmpire",
+            "countries": [
+                "Moldavia",
+                "Bulgaria",
+                "Romania",
+                "Greece",
+                "Turkey"
+            ],
+            "bonus": 4
+        },
+        {
+            "name": "Balkan",
+            "countries": [
+                "Slovenia",
+                "Serbia",
+                "Bosnia",
+                "Croatia",
+                "Albania",
+                "Kosovo",
+                "NorthMacedonia",
+                "Montenegro"
+            ],
+            "bonus": 7
+        },
+        {
+            "name": "EnglishEmpire",
+            "countries": [
+                "Iceland",
+                "Ireland",
+                "United Kingdom"
+            ],
+            "bonus": 2
+        }
+    ]
+}
