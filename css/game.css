@@ -1,10 +1,16 @@
 body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
     background-color: lightblue;
 }
 
 #map {
     width: 766px;
     height: 768px;
+    border: 2px solid black;
 }
 
 .country {
@@ -61,4 +67,24 @@ body{
 html, body {
     overflow-x: hidden;
     overflow-y: hidden;
+}
+
+.continent-white {
+    filter: drop-shadow(0 0 5px white) invert(95%) sepia(95%) saturate(35%) hue-rotate(63deg) brightness(107%) contrast(100%);
+}
+
+.continent-blue {
+    filter: drop-shadow(0 0 5px blue);
+}
+
+.continent-yellow {
+    filter: drop-shadow(0 0 5px yellow) invert(95%) sepia(95%) saturate(1000%) hue-rotate(10deg) brightness(100%) contrast(100%);
+}
+
+.continent-red {
+    filter: drop-shadow(0 0 5px red) invert(16%) sepia(99%) saturate(7404%) hue-rotate(4deg) brightness(95%) contrast(118%);
+}
+
+.continent-green {
+    filter: drop-shadow(0 0 5px green) invert(26%) sepia(89%) saturate(1583%) hue-rotate(95deg) brightness(96%) contrast(106%);
 }

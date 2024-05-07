@@ -9,8 +9,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     players[4] = "green";
 
     const game = new Game(players, await initCountries("Europe"), "Europe");
-
-    await game.startMap();
 });
 
 function initCountries(map) {

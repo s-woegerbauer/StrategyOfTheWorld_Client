@@ -4,9 +4,14 @@ export class Game {
         this.countries = countries;
         this.currentPlayer = 0;
         this.map = map;
+        readJSON(this.map + "/continents.json").then(data =>
+        {
+            this.continentData = data["continents"];
+            this.startMap();
+        });
     }
 
-    async startMap() {
+    startMap() {
         const worldMap = document.getElementById('map');
         worldMap.style.backgroundImage = `url("../${this.map}/sea-routes.png")`;
         this.countries = this.delegateTroops();
@@ -43,8 +48,9 @@ export class Game {
             document.getElementById(this.countries[i].name).appendChild(countryElement);
 
             countryElement.addEventListener("click", (event) => {
-                const clickedX = event.offsetX;
-                const clickedY = event.offsetY;
+                const rect = countryElement.getBoundingClientRect();
+                const clickedX = event.offsetX + rect.left;
+                const clickedY = event.offsetY + rect.top;
 
                 let j = 0;
                 document.querySelectorAll('.country').forEach(element => {
@@ -92,6 +98,8 @@ export class Game {
             });
             i++;
         });
+
+        this.checkContinents();
     }
 
     delegateTroops() {
@@ -176,6 +184,63 @@ export class Game {
         });
         for (let i = 0; i < newCountries.length; i++) {
             console.log(newCountries[i].name + " | " + newCountries[i].color + " | " + newCountries[i].troops)
+        }
+    }
+
+    checkContinents() {
+        for(const continent of this.continentData)
+        {
+            const countries = this.countries.filter(country => continent.countries.includes(country.name));
+            let color = countries[0].color;
+
+            for(const country of countries)
+            {
+                if(country.color !== countries[0].color)
+                {
+                    color = undefined;
+                    this.onNotContinent(continent);
+                }
+            }
+
+            if(color)
+            {
+                this.onContinent(continent, color)
+            }
+        }
+    }
+
+    onContinent(continent, color)
+    {
+        console.log(color + " has conquered " + continent.name);
+
+        for(const country of this.countries.filter(country => continent.countries.includes(country.name)))
+        {
+            document.getElementById(country.name).children[1].classList.add("continent-" + color);
+        }
+    }
+
+    onNotContinent(continent)
+    {
+        for(const country of this.countries.filter(country => continent.countries.includes(country.name)))
+        {
+            removeClassesWithSpecificString(document.getElementById(country.name).children[1], "continent-");
+        }
+    }
+}
+
+function readJSON(path) {
+    return fetch(path)
+        .then(response => response.json())
+        .catch(error => {
+            console.error('Error reading JSON:', error);
+        });
+}
+
+function removeClassesWithSpecificString(element, specificString) {
+    const classes = Array.from(element.classList);
+    for (let i = 0; i < classes.length; i++) {
+        if (classes[i].includes(specificString)) {
+            element.classList.remove(classes[i]);
         }
     }
 }
