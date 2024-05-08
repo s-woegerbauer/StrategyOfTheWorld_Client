@@ -4,11 +4,19 @@ export class Game {
         this.countries = countries;
         this.currentPlayer = 0;
         this.map = map;
+
         readJSON(this.map + "/continents.json").then(data =>
         {
             this.continentData = data["continents"];
             this.startMap();
         });
+
+        this.continentsConquered = [];
+
+        for(const continent of this.continentData)
+        {
+            this.continentsConquered.push(continent.name, "none");
+        }
     }
 
     startMap() {
@@ -211,19 +219,29 @@ export class Game {
 
     onContinent(continent, color)
     {
-        console.log(color + " has conquered " + continent.name);
+        if(this.continentsConquered[this.continentsConquered.indexOf(continent.name) + 1] !== color)
+        {
+            this.continentsConquered[this.continentsConquered.indexOf(continent.name) + 1] = color;
+
+            console.log(color + " has conquered " + continent.name);
+            showOverlay(color + " has conquered " + continent.name, 4000)
+        }
 
         for(const country of this.countries.filter(country => continent.countries.includes(country.name)))
         {
             document.getElementById(country.name).children[1].classList.add("continent-" + color);
+            document.getElementById(country.name).children[1].classList.add("conquered");
         }
     }
 
     onNotContinent(continent)
     {
+        this.continentsConquered[this.continentsConquered.indexOf(continent.name) + 1] = "none";
+
         for(const country of this.countries.filter(country => continent.countries.includes(country.name)))
         {
             removeClassesWithSpecificString(document.getElementById(country.name).children[1], "continent-");
+            removeClassesWithSpecificString(document.getElementById(country.name).children[1], "conquered");
         }
     }
 }
@@ -243,4 +261,25 @@ function removeClassesWithSpecificString(element, specificString) {
             element.classList.remove(classes[i]);
         }
     }
+}
+
+function showOverlay(text, duration) {
+    const overlay = document.getElementById("overlay");
+    const overlayText = document.getElementById("overlayText");
+
+    overlayText.textContent = text;
+    overlay.style.display = "block";
+
+    overlay.classList.add("fadeIn");
+
+    setTimeout(function() {
+        overlay.classList.remove("fadeIn");
+
+        overlay.classList.add("fadeOut");
+
+        setTimeout(function() {
+            overlay.style.display = "none";
+            overlay.classList.remove("fadeOut");
+        }, duration / 4);
+    }, duration / 4);
 }

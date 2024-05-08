@@ -5,6 +5,7 @@ body{
     height: 100vh;
     margin: 0;
     background-color: lightblue !important;
+    text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
 }
 
 
@@ -53,9 +54,8 @@ body{
 }
 
 .clicked {
+    z-index: 999;
     -webkit-filter: drop-shadow(2px 2px 0 black)
-    drop-shadow(-2px -2px 0 black);
-    filter: drop-shadow(2px 2px 0 black)
     drop-shadow(-2px -2px 0 black);
 }
 
@@ -108,4 +108,26 @@ html, body {
     position: absolute;
     top: 5%;
     right: 5%;
+}
+
+
+#overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 9999;
+}
+
+#overlay p {
+    color: white;
+    font-size: 24px;
+    text-align: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
