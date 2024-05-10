@@ -5,18 +5,18 @@ export class Game {
         this.currentPlayer = 0;
         this.map = map;
 
-        readJSON(this.map + "/continents.json").then(data =>
-        {
+        getContinentData(map).then(data => {
             this.continentData = data["continents"];
+
+            this.continentsConquered = [];
+
+            for(const continent of this.continentData)
+            {
+                this.continentsConquered.push(continent.name, "none");
+            }
+
             this.startMap();
         });
-
-        this.continentsConquered = [];
-
-        for(const continent of this.continentData)
-        {
-            this.continentsConquered.push(continent.name, "none");
-        }
     }
 
     startMap() {
@@ -196,6 +196,7 @@ export class Game {
     }
 
     checkContinents() {
+
         for(const continent of this.continentData)
         {
             const countries = this.countries.filter(country => continent.countries.includes(country.name));
@@ -223,7 +224,6 @@ export class Game {
         {
             this.continentsConquered[this.continentsConquered.indexOf(continent.name) + 1] = color;
 
-            console.log(color + " has conquered " + continent.name);
             showOverlay(color + " has conquered " + continent.name, 4000)
         }
 
@@ -246,7 +246,7 @@ export class Game {
     }
 }
 
-function readJSON(path) {
+async function readJSON(path) {
     return fetch(path)
         .then(response => response.json())
         .catch(error => {
@@ -282,4 +282,17 @@ function showOverlay(text, duration) {
             overlay.classList.remove("fadeOut");
         }, duration / 4);
     }, duration / 4);
+}
+
+function getContinentData(map) {
+    return new Promise((resolve, reject) => {
+        readJSON(map + "/continents.json")
+            .then(data => {
+                resolve(data);
+            })
+            .catch(error => {
+                console.error('Error initializing countries:', error);
+                reject(error);
+            });
+    });
 }

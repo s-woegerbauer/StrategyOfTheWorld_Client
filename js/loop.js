@@ -56,7 +56,6 @@ function checkRainbowMode()
     {
         document.getElementById("map").classList.add("rainbow");
     }
-
     else
     {
         document.getElementById("map").classList.remove("rainbow");
