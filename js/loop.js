@@ -13,6 +13,10 @@ document.addEventListener('DOMContentLoaded', async () => {
     document.getElementById('flexSwitchCheckRainbow').addEventListener('change', function() {
         checkRainbowMode();
     });
+
+    document.getElementById('flexSwitchCheckDark').addEventListener('change', function() {
+        checkDarkMode();
+    });
 });
 
 function initCountries(map) {
@@ -59,5 +63,17 @@ function checkRainbowMode()
     else
     {
         document.getElementById("map").classList.remove("rainbow");
+    }
+}
+
+function checkDarkMode()
+{
+    if(document.getElementById("flexSwitchCheckDark").checked)
+    {
+        document.getElementById("body").classList.add("dark");
+    }
+    else
+    {
+        document.getElementById("body").classList.remove("dark");
     }
 }

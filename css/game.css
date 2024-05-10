@@ -8,11 +8,19 @@ body{
     text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
 }
 
+body.dark{
+    background-color: #383838 !important;
+}
+
 
 #map {
     width: 770px;
     height: 770px;
     border: 2px solid black;
+}
+
+.dark #map {
+    border: 2px solid white;
 }
 
 .country {
@@ -57,6 +65,11 @@ body{
     z-index: 999;
     -webkit-filter: drop-shadow(2px 2px 0 black)
     drop-shadow(-2px -2px 0 black);
+}
+
+.dark .clicked {
+    -webkit-filter: drop-shadow(2px 2px 0 #ffffff)
+    drop-shadow(-2px -2px 0 #ffffff);
 }
 
 body{
