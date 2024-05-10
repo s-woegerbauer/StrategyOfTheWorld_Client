@@ -1,6 +1,25 @@
 import {Game} from "./game.js";
 
+function initSizes(map) {
+    readJSON(map + "/sizes.json")
+        .then(data => {
+            document.getElementById("map").style.width = data.width + "px";
+            document.getElementById("map").style.height = data.height + "px";
+
+            for(const element of document.getElementsByClassName("country"))
+            {
+                element.style.width = data.width + "px";
+                element.style.height = data.height + "px";
+            }
+        })
+        .catch(error => {
+            console.error('Error initializing sizes:', error);
+        });
+}
+
 document.addEventListener('DOMContentLoaded', async () => {
+    initSizes("Europe");
+
     let players = new Array(5);
     players[0] = "white";
     players[1] = "blue";
