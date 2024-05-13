@@ -13,12 +13,35 @@ document.addEventListener('DOMContentLoaded', async () => {
         const img = document.createElement('img');
         img.src = `./maps/${directory}/map.png`;
         img.alt = directory;
-        img.className = 'map-image';
+        img.classList.add('map-image');
+        img.classList.add('black');
         card.appendChild(img);
 
         const title = document.createElement('h2');
         title.textContent = directory;
         card.appendChild(title);
         container.appendChild(card);
+
+        card.addEventListener('click', () => {
+            for(const element of document.getElementsByClassName('selected'))
+            {
+                element.classList.remove('selected');
+            }
+            card.classList.add('selected');
+        });
     });
 });
+
+function start()
+{
+    const element = document.getElementsByClassName('selected')[0];
+    if(element)
+    {
+        const map = element.getElementsByTagName('h2')[0].textContent;
+        window.location.href = `./game.html?map=${map}`;
+    }
+    else
+    {
+        alert('No map selected');
+    }
+}

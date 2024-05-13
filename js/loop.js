@@ -1,7 +1,9 @@
 import {Game} from "./game.js";
 
 document.addEventListener("DOMContentLoaded", async ()=> {
-    await start("Europe")
+    const url = new URL(window.location.href);
+    const map = url.searchParams.get("map");
+    await start(map);
 });
 
 function initSizes(map) {

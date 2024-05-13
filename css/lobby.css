@@ -51,11 +51,40 @@ button:hover {
     width: 400px;
     height: 400px;
     object-fit: cover;
+    border: black 2px solid;
+    border-radius: 5px;
 }
 
 .card-container {
     margin-top: 2rem;
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
     flex-wrap: wrap;
+    gap: 8rem;
+}
+
+.card-container:hover{
+    cursor: pointer;
+}
+
+.black {
+    filter: invert(100%) brightness(0%);
+}
+
+.card{
+    text-align: center;
+    border: black 5px solid !important;
+    padding: 2rem;
+}
+
+h2{
+    padding-top: 2rem;
+}
+
+.card.selected{
+    border: red 5px solid !important;
+}
+
+.btn{
+    font-size: 200% !important;
 }
