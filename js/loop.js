@@ -1,7 +1,11 @@
 import {Game} from "./game.js";
 
+document.addEventListener("DOMContentLoaded", async ()=> {
+    await start("Europe")
+});
+
 function initSizes(map) {
-    readJSON(map + "/sizes.json")
+    readJSON("./maps/" + map + "/sizes.json")
         .then(data => {
             document.getElementById("map").style.width = data.width + "px";
             document.getElementById("map").style.height = data.height + "px";
@@ -17,8 +21,9 @@ function initSizes(map) {
         });
 }
 
-document.addEventListener('DOMContentLoaded', async () => {
-    initSizes("Europe");
+async function start(map)
+{
+    initSizes(map);
 
     let players = new Array(5);
     players[0] = "white";
@@ -27,7 +32,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     players[3] = "red";
     players[4] = "green";
 
-    const game = new Game(players, await initCountries("Europe"), "Europe");
+    const game = new Game(players, await initCountries(map), map);
 
     document.getElementById('flexSwitchCheckRainbow').addEventListener('change', function() {
         checkRainbowMode();
@@ -36,11 +41,13 @@ document.addEventListener('DOMContentLoaded', async () => {
     document.getElementById('flexSwitchCheckDark').addEventListener('change', function() {
         checkDarkMode();
     });
-});
+
+    document.getElementById("flexSwitchCheckDark").click();
+}
 
 function initCountries(map) {
     return new Promise((resolve, reject) => {
-        readJSON(map + "/init.json")
+        readJSON("./maps/" + map + "/init.json")
             .then(data => {
                 let initializedCountries = new Array(data.length)
                 let i = 0;

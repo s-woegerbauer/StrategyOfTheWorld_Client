@@ -1,6 +1,6 @@
 Countries: 38
 Continents: 8
-avg counties/continent: 4.75
+avg countries/continent: 4.75
 
 Scandinavia:
 - Norway

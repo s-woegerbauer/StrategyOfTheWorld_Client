@@ -21,7 +21,7 @@ export class Game {
 
     startMap() {
         const worldMap = document.getElementById('map');
-        worldMap.style.backgroundImage = `url("../${this.map}/sea-routes.png")`;
+        worldMap.style.backgroundImage = `url("../maps/${this.map}/sea-routes.png")`;
         this.countries = this.delegateTroops();
         this.update();
     }
@@ -51,7 +51,7 @@ export class Game {
             countryElement.style.position = "absolute";
             countryElement.className = `country ${country.color}`;
             countryElement.style.color = "black";
-            countryElement.style.backgroundImage = `url('${this.map}/${country.name}.png')`;
+            countryElement.style.backgroundImage = `url('./maps/${this.map}/${country.name}.png')`;
 
             document.getElementById(this.countries[i].name).appendChild(countryElement);
 
@@ -71,14 +71,13 @@ export class Game {
 
                     img.onload = function () {
                         function onClickCountry(name) {
+                            console.log("clicked on: " + name);
                             const elementContainer = document.getElementById(name);
                             if (elementContainer.classList.contains("clicked")) {
                                 elementContainer.classList.remove("clicked");
                             } else {
                                 elementContainer.classList.add("clicked");
                             }
-
-                            console.log("clicked on: " + name);
                         }
 
                         const canvas = document.createElement('canvas');
@@ -96,7 +95,7 @@ export class Game {
                                 elements[i].classList.remove("clicked");
                             }
 
-                            const name = img.src.replace(".png", "").split("/")[5];
+                            const name = img.src.replace(".png", "").split("/")[6];
                             onClickCountry(name);
                         }
                     };
@@ -286,7 +285,7 @@ function showOverlay(text, duration) {
 
 function getContinentData(map) {
     return new Promise((resolve, reject) => {
-        readJSON(map + "/continents.json")
+        readJSON("./maps/" + map + "/continents.json")
             .then(data => {
                 resolve(data);
             })

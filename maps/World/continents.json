@@ -1,0 +1,64 @@
+{
+  "continents": [
+    {
+      "name": "Africa",
+      "countries": [
+        "Madagascar",
+        "Congo",
+        "SouthAfrica",
+        "NorthAfrica",
+        "EastAfrica",
+        "Egypt",
+        "Sahara"
+      ], "Troops": 3 }, {
+      "name": "Asia",
+      "countries": [
+        "Iran",
+        "Afghanistan",
+        "India",
+        "China",
+        "Mongolia",
+        "Siberia",
+        "SiberiaBottom",
+        "Japan",
+        "Ural",
+        "RussiaRight",
+        "Thailand"
+      ], "Troops": 7 }, {
+      "name": "Europe",
+      "countries": [
+        "Iceland",
+        "Scandinavia",
+        "UK",
+        "Russia",
+        "Pyrenees",
+        "Germany",
+        "Italy"
+      ],"Troops": 5 }, {
+      "name": "NorthAmerica",
+      "countries": [
+        "Alaska",
+        "Greenland",
+        "Canada",
+        "USA",
+        "Mexico",
+        "Washington",
+        "CanadaRight",
+        "CanadaMiddle"
+      ],"Troops": 5 }, {
+      "name": "SouthAmerica",
+      "countries": [
+        "Brazil",
+        "Peru",
+        "Argentina",
+        "SouthAmerica"
+      ],"Troops": 2 }, {
+      "name": "Australia",
+      "countries": [
+        "IndonesiaLeft",
+        "IndonesiaRight",
+        "AustraliaLeft",
+        "AustraliaRight"
+      ],"Troops": 2 }
+  ]
+}

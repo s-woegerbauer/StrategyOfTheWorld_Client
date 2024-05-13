@@ -1,0 +1,60 @@
+Countries: 42
+Continents: 6
+avg countries/continent: 7
+
+Europe:
+- Iceland
+- Scandinavia
+- UK
+- Ural
+- Pyrenees
+- Germany
+- Italy
+- 5 Troops
+
+Asia:
+- Iran
+- India
+- China
+- Japan
+- Russia
+- RussiaRight
+- Siberia
+- SiberiaBottom
+- Thailand
+- Afghanistan
+- Mongolia
+- 7 Troops
+
+Africa:
+- Egypt
+- Jordan
+- Kongo
+- SouthAfrica
+- Madagascar
+- Sahara
+- 3 Troops
+
+SouthAmerica:
+- Brazil
+- Peru
+- SouthAmerica
+- Argentina
+- 2 Troops
+
+NorthAmerica:
+- Alaska
+- Canada
+- CanadaRight
+- California
+- USA
+- Mexico
+- Greenland
+- Washington
+- 5 Troops
+
+Australia:
+- AustraliaLeft
+- AustraliaRight
+- IndonesiaLeft
+- IndonesiaRight

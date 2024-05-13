@@ -46,3 +46,16 @@ button {
 button:hover {
     background-color: #444;
 }
+
+.map-image {
+    width: 400px;
+    height: 400px;
+    object-fit: cover;
+}
+
+.card-container {
+    margin-top: 2rem;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
