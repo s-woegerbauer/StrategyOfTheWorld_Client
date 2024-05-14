@@ -1,8 +1,8 @@
 export class Game {
     constructor(players, countries, map) {
+        this.currentPlayer = 0;
         this.players = players;
         this.countries = countries;
-        this.currentPlayer = 0;
         this.map = map;
 
         getContinentData(map).then(data => {
@@ -24,6 +24,10 @@ export class Game {
         worldMap.style.backgroundImage = `url("../maps/${this.map}/sea-routes.png")`;
         this.countries = this.delegateTroops();
         this.update();
+    }
+
+    onPlayerChange() {
+        showOverlay("It's " + this.players[this.currentPlayer] + "'s turn", 2000, this.players[this.currentPlayer]);
     }
 
     update() {
@@ -69,9 +73,11 @@ export class Game {
                     const img = new Image();
                     img.src = element.style.backgroundImage.replace('url("', '').replace('")', '');
 
-                    img.onload = function () {
-                        function onClickCountry(name) {
+                    img.onload =  () => {
+                        const onClickCountry = (name) => {
                             console.log("clicked on: " + name);
+                            this.currentPlayer = (this.currentPlayer + 1) % this.players.length;
+                            this.onPlayerChange();
                             const elementContainer = document.getElementById(name);
                             if (elementContainer.classList.contains("clicked")) {
                                 elementContainer.classList.remove("clicked");
@@ -223,7 +229,7 @@ export class Game {
         {
             this.continentsConquered[this.continentsConquered.indexOf(continent.name) + 1] = color;
 
-            showOverlay(color + " has conquered " + continent.name, 4000)
+            showOverlay(color + " has conquered " + continent.name, 4000, color)
         }
 
         for(const country of this.countries.filter(country => continent.countries.includes(country.name)))
@@ -262,11 +268,12 @@ function removeClassesWithSpecificString(element, specificString) {
     }
 }
 
-function showOverlay(text, duration) {
+function showOverlay(text, duration, color) {
     const overlay = document.getElementById("overlay");
     const overlayText = document.getElementById("overlayText");
 
     overlayText.textContent = text;
+    overlayText.style.color = color || "black";
     overlay.style.display = "block";
 
     overlay.classList.add("fadeIn");

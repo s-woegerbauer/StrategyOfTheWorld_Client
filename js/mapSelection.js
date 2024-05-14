@@ -1,4 +1,10 @@
 document.addEventListener('DOMContentLoaded', async () => {
+    document.getElementById('flexSwitchCheckDark').addEventListener('change', function() {
+        checkDarkMode();
+    });
+
+    document.getElementById("flexSwitchCheckDark").click();
+
     const container = document.getElementById('map-container');
     container.className = 'card-container';
 
@@ -43,5 +49,17 @@ function start()
     else
     {
         alert('No map selected');
+    }
+}
+
+function checkDarkMode()
+{
+    if(document.getElementById("flexSwitchCheckDark").checked)
+    {
+        document.getElementById("body").classList.add("dark");
+    }
+    else
+    {
+        document.getElementById("body").classList.remove("dark");
     }
 }

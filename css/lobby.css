@@ -47,12 +47,21 @@ button:hover {
     background-color: #444;
 }
 
+.dark {
+    background-color: #333 !important;
+    color: white !important;
+}
+
 .map-image {
     width: 400px;
     height: 400px;
     object-fit: cover;
     border: black 2px solid;
     border-radius: 5px;
+}
+
+.dark .map-image {
+    border: white 2px solid !important;
 }
 
 .card-container {
@@ -71,6 +80,11 @@ button:hover {
     filter: invert(100%) brightness(0%);
 }
 
+.dark .card{
+    border: #626262 5px solid !important;
+    background-color: #bbbbbb;
+}
+
 .card{
     text-align: center;
     border: black 5px solid !important;
@@ -87,4 +101,15 @@ h2{
 
 .btn{
     font-size: 200% !important;
+}
+
+.dark{
+    background-color: #333 !important;
+    color: white !important;
+}
+
+#settings {
+    position: absolute;
+    top: 5%;
+    right: 5%;
 }
