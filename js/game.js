@@ -1,13 +1,15 @@
 export class Game {
-    constructor(players, countries, map) {
+    constructor(players, countries, map, playerIndex) {
         this.currentPlayer = 0;
         this.players = players;
         this.countries = countries;
         this.map = map;
+        this.phases = ["End Reinforcement", "End Attack", "End Fortification", "End Turn"];
+        this.phaseIndex = 0;
+        this.playerIndex = playerIndex;
 
         getContinentData(map).then(data => {
             this.continentData = data["continents"];
-
             this.continentsConquered = [];
 
             for(const continent of this.continentData)
@@ -16,6 +18,36 @@ export class Game {
             }
 
             this.startMap();
+        });
+
+        document.getElementById("actionBtn").addEventListener("click", () => {
+            if(this.currentPlayer === this.playerIndex)
+            {
+                if(this.phases[this.phaseIndex] !== "End Turn") {
+                    const phaseElements = Array.from(document.getElementById("actions").children);
+                    phaseElements.reverse();
+
+                    for (let i = 0; i < phaseElements.length; i++) {
+                        const element = phaseElements[i];
+
+                        element.disabled = this.phaseIndex + 1 !== i;
+                    }
+                }
+            }
+
+
+            if(this.phaseIndex + 1 === this.phases.length)
+            {
+                this.currentPlayer = (this.currentPlayer + 1) % this.players.length;
+                this.onPlayerChange();
+            }
+
+            if(this.phases[this.phaseIndex] !== "End Turn") {
+                showOverlay(this.phases[this.phaseIndex], 2000, this.players[this.currentPlayer]);
+            }
+
+            this.phaseIndex = (this.phaseIndex + 1) % this.phases.length;
+            document.getElementById("actionBtn").textContent = this.phases[this.phaseIndex];
         });
     }
 
@@ -27,6 +59,17 @@ export class Game {
     }
 
     onPlayerChange() {
+        if(this.currentPlayer === this.playerIndex)
+        {
+            const phaseElements = Array.from(document.getElementById("actions").children);
+            phaseElements.reverse();
+
+            for (let i = 0; i < phaseElements.length; i++) {
+                const element = phaseElements[i];
+
+                element.disabled = i !== 0;
+            }
+        }
         showOverlay("It's " + this.players[this.currentPlayer] + "'s turn", 2000, this.players[this.currentPlayer]);
     }
 
@@ -76,8 +119,6 @@ export class Game {
                     img.onload =  () => {
                         const onClickCountry = (name) => {
                             console.log("clicked on: " + name);
-                            this.currentPlayer = (this.currentPlayer + 1) % this.players.length;
-                            this.onPlayerChange();
                             const elementContainer = document.getElementById(name);
                             if (elementContainer.classList.contains("clicked")) {
                                 elementContainer.classList.remove("clicked");

@@ -120,9 +120,9 @@ html, body {
 #settings {
     position: absolute;
     top: 5%;
-    right: 5%;
+    right: 8%;
+    transform: scale(1.5);
 }
-
 
 #overlay {
     display: none;
@@ -143,4 +143,31 @@ html, body {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+}
+
+#actions {
+    position: absolute;
+    bottom: 5%;
+    left: 7%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+#actions button {
+    padding: 10px;
+    font-size: 24px;
+    width: 150%;
+    border: none;
+    cursor: pointer;
+}
+
+#actionBtn {
+    position: absolute;
+    bottom: 5%;
+    right: 7%;
+    padding: 10px;
+    font-size: 24px;
+    border: none;
+    cursor: pointer;
 }

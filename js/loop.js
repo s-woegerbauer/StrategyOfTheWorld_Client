@@ -34,7 +34,13 @@ async function start(map)
     players[3] = "red";
     players[4] = "green";
 
-    const game = new Game(players, await initCountries(map), map);
+    const playerIndex = 3;
+
+    const game = new Game(players, await initCountries(map), map, playerIndex);
+
+    document.getElementById("overlay").addEventListener("click", function() {
+       document.getElementById("overlay").style.display = "none";
+    });
 
     document.getElementById('flexSwitchCheckRainbow').addEventListener('change', function() {
         checkRainbowMode();
