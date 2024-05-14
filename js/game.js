@@ -18,6 +18,7 @@ export class Game {
             }
 
             this.startMap();
+
         });
 
         document.getElementById("actionBtn").addEventListener("click", () => {
@@ -152,6 +153,11 @@ export class Game {
             });
             i++;
         });
+
+        document.getElementById("playerName").innerText = this.players[this.playerIndex];
+        document.getElementById("playerName").style.color = this.players[this.playerIndex];
+        document.getElementById("playerTroops").innerText = `${this.getTroops(this.players.length)}`;
+        document.getElementById("playerCountries").innerText = `${this.countries.filter(country => country.color === this.players[this.playerIndex]).length}`;
 
         this.checkContinents();
     }
