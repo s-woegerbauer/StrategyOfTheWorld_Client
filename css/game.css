@@ -1,3 +1,8 @@
+
+:root {
+    --scale-factor: 0.8;
+}
+
 body{
     display: flex;
     justify-content: center;
@@ -120,7 +125,7 @@ html, body {
 #settings {
     position: absolute;
     top: 5%;
-    right: 8%;
+    right: 3%;
     transform: scale(1.5);
 }
 
@@ -148,7 +153,7 @@ html, body {
 #actions {
     position: absolute;
     bottom: 5%;
-    left: 7%;
+    left: 1%;
     display: flex;
     flex-direction: column;
     gap: 10px;
@@ -162,12 +167,23 @@ html, body {
     cursor: pointer;
 }
 
-#actionBtn {
+#btnContainer {
     position: absolute;
     bottom: 5%;
-    right: 7%;
+    right: 1%;
     padding: 10px;
     font-size: 24px;
     border: none;
     cursor: pointer;
+}
+
+#actionBtn {
+    padding: 10px;
+    font-size: 24px;
+    border: none;
+    cursor: pointer;
+}
+
+.ui {
+    transform: scale(var(--scale-factor));
 }

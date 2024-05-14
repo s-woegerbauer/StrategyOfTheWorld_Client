@@ -38,6 +38,10 @@ async function start(map)
 
     const game = new Game(players, await initCountries(map), map, playerIndex);
 
+    document.getElementById('scale').addEventListener('input', function(event) {
+        document.documentElement.style.setProperty('--scale-factor', event.target.value);
+    });
+
     document.getElementById("overlay").addEventListener("click", function() {
        document.getElementById("overlay").style.display = "none";
     });
