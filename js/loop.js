@@ -37,7 +37,7 @@ async function start(map)
     let skins = new Array(5);
     skins[0] = "circles";
     skins[1] = "clouds";
-    skins[2] = "clouds";
+    skins[2] = "water";
     skins[3] = "none";
     skins[4] = "waves";
 
