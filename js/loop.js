@@ -34,9 +34,16 @@ async function start(map)
     players[3] = "red";
     players[4] = "green";
 
-    const playerIndex = 3;
+    let skins = new Array(5);
+    skins[0] = "circles";
+    skins[1] = "clouds";
+    skins[2] = "clouds";
+    skins[3] = "none";
+    skins[4] = "waves";
 
-    const game = new Game(players, await initCountries(map), map, playerIndex);
+    const playerIndex = 1;
+
+    const game = new Game(skins, players, await initCountries(map), map, playerIndex);
 
     document.getElementById('scale').addEventListener('input', function(event) {
         document.documentElement.style.setProperty('--scale-factor', event.target.value);

@@ -1,5 +1,5 @@
 export class Game {
-    constructor(players, countries, map, playerIndex) {
+    constructor(skins, players, countries, map, playerIndex) {
         this.currentPlayer = 0;
         this.players = players;
         this.countries = countries;
@@ -7,6 +7,7 @@ export class Game {
         this.phases = ["End Reinforcement", "End Attack", "End Fortification", "End Turn"];
         this.phaseIndex = 0;
         this.playerIndex = playerIndex;
+        this.skins = skins;
 
         getContinentData(map).then(data => {
             this.continentData = data["continents"];
@@ -100,8 +101,34 @@ export class Game {
             countryElement.className = `country ${country.color}`;
             countryElement.style.color = "black";
             countryElement.style.backgroundImage = `url('./maps/${this.map}/${country.name}.png')`;
+            countryElement.id = country.name;
 
             document.getElementById(this.countries[i].name).appendChild(countryElement);
+            console.log(this.players.indexOf(country.color));
+            const skin = this.skins[this.players.indexOf(country.color)];
+            console.log(skin);
+
+            if (skin !== "none") {
+                const img = new Image();
+                img.src = countryElement.style.backgroundImage.replace('url("', '').replace('")', '');
+                img.onload = () => {
+                    const texture = new Image();
+                    texture.src = `./Textures/${skin}.png`;
+                    texture.classList.add("texture");
+                    texture.onload = () => {
+                        const canvas = document.createElement('canvas');
+                        const ctx = canvas.getContext('2d');
+                        canvas.width = img.width;
+                        canvas.height = img.height;
+                        ctx.globalAlpha = 4;
+                        ctx.drawImage(img, 0, 0);
+                        ctx.globalCompositeOperation = 'source-in';
+                        ctx.globalAlpha = 1;
+                        ctx.drawImage(texture, 0, 0, img.width, img.height);
+                        countryElement.style.backgroundImage = `url(${canvas.toDataURL()})`;
+                    };
+                };
+            }
 
             countryElement.addEventListener("click", (event) => {
                 const rect = countryElement.getBoundingClientRect();
@@ -137,13 +164,12 @@ export class Game {
                         const imageData = ctx.getImageData(elementX, elementY, 1, 1).data;
 
                         if (imageData[3] !== 0) {
-
                             let elements = document.getElementsByClassName("clicked");
                             for (let i = 0; i < elements.length; i++) {
                                 elements[i].classList.remove("clicked");
                             }
 
-                            const name = img.src.replace(".png", "").split("/")[6];
+                            const name = element.id;
                             onClickCountry(name);
                         }
                     };
