@@ -62,6 +62,22 @@ async function start(map)
     });
 
     document.getElementById("flexSwitchCheckDark").click();
+
+    const dropdownSkins = ["circles", "clouds", "water", "none", "waves"];
+    const dropdownItems = document.getElementById("dropdownItems");
+
+    for(const skin of dropdownSkins)
+    {
+        let a = document.createElement('a');
+        a.classList.add('dropdown-item');
+        a.href = '#';
+        a.textContent = skin;
+        a.addEventListener("click", function() {
+            game.changeSkin(a.textContent);
+            document.getElementById("dropdownMenuButton").textContent = a.textContent;
+        });
+        dropdownItems.appendChild(a);
+    }
 }
 
 function initCountries(map) {

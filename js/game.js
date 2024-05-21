@@ -13,8 +13,7 @@ export class Game {
             this.continentData = data["continents"];
             this.continentsConquered = [];
 
-            for(const continent of this.continentData)
-            {
+            for (const continent of this.continentData) {
                 this.continentsConquered.push(continent.name, "none");
             }
 
@@ -23,9 +22,8 @@ export class Game {
         });
 
         document.getElementById("actionBtn").addEventListener("click", () => {
-            if(this.currentPlayer === this.playerIndex)
-            {
-                if(this.phases[this.phaseIndex] !== "End Turn") {
+            if (this.currentPlayer === this.playerIndex) {
+                if (this.phases[this.phaseIndex] !== "End Turn") {
                     const phaseElements = Array.from(document.getElementById("actions").children);
                     phaseElements.reverse();
 
@@ -38,13 +36,12 @@ export class Game {
             }
 
 
-            if(this.phaseIndex + 1 === this.phases.length)
-            {
+            if (this.phaseIndex + 1 === this.phases.length) {
                 this.currentPlayer = (this.currentPlayer + 1) % this.players.length;
                 this.onPlayerChange();
             }
 
-            if(this.phases[this.phaseIndex] !== "End Turn") {
+            if (this.phases[this.phaseIndex] !== "End Turn") {
                 showOverlay(this.phases[this.phaseIndex], 2000, this.players[this.currentPlayer]);
             }
 
@@ -61,8 +58,7 @@ export class Game {
     }
 
     onPlayerChange() {
-        if(this.currentPlayer === this.playerIndex)
-        {
+        if (this.currentPlayer === this.playerIndex) {
             const phaseElements = Array.from(document.getElementById("actions").children);
             phaseElements.reverse();
 
@@ -77,6 +73,7 @@ export class Game {
 
     update() {
         const worldMap = document.getElementById('map');
+        worldMap.innerHTML = "";
 
         for (let i = 0; i < this.countries.length; i++) {
             const element = worldMap;
@@ -104,9 +101,7 @@ export class Game {
             countryElement.id = country.name;
 
             document.getElementById(this.countries[i].name).appendChild(countryElement);
-            console.log(this.players.indexOf(country.color));
             const skin = this.skins[this.players.indexOf(country.color)];
-            console.log(skin);
 
             if (skin !== "none") {
                 const img = new Image();
@@ -144,7 +139,7 @@ export class Game {
                     const img = new Image();
                     img.src = element.style.backgroundImage.replace('url("', '').replace('")', '');
 
-                    img.onload =  () => {
+                    img.onload = () => {
                         const onClickCountry = (name) => {
                             console.log("clicked on: " + name);
                             const elementContainer = document.getElementById(name);
@@ -275,52 +270,48 @@ export class Game {
 
     checkContinents() {
 
-        for(const continent of this.continentData)
-        {
+        for (const continent of this.continentData) {
             const countries = this.countries.filter(country => continent.countries.includes(country.name));
             let color = countries[0].color;
 
-            for(const country of countries)
-            {
-                if(country.color !== countries[0].color)
-                {
+            for (const country of countries) {
+                if (country.color !== countries[0].color) {
                     color = undefined;
                     this.onNotContinent(continent);
                 }
             }
 
-            if(color)
-            {
+            if (color) {
                 this.onContinent(continent, color)
             }
         }
     }
 
-    onContinent(continent, color)
-    {
-        if(this.continentsConquered[this.continentsConquered.indexOf(continent.name) + 1] !== color)
-        {
+    onContinent(continent, color) {
+        if (this.continentsConquered[this.continentsConquered.indexOf(continent.name) + 1] !== color) {
             this.continentsConquered[this.continentsConquered.indexOf(continent.name) + 1] = color;
 
             showOverlay(color + " has conquered " + continent.name, 4000, color)
         }
 
-        for(const country of this.countries.filter(country => continent.countries.includes(country.name)))
-        {
+        for (const country of this.countries.filter(country => continent.countries.includes(country.name))) {
             document.getElementById(country.name).children[1].classList.add("continent-" + color);
             document.getElementById(country.name).children[1].classList.add("conquered");
         }
     }
 
-    onNotContinent(continent)
-    {
+    onNotContinent(continent) {
         this.continentsConquered[this.continentsConquered.indexOf(continent.name) + 1] = "none";
 
-        for(const country of this.countries.filter(country => continent.countries.includes(country.name)))
-        {
+        for (const country of this.countries.filter(country => continent.countries.includes(country.name))) {
             removeClassesWithSpecificString(document.getElementById(country.name).children[1], "continent-");
             removeClassesWithSpecificString(document.getElementById(country.name).children[1], "conquered");
         }
+    }
+
+    changeSkin(skin) {
+        this.skins[this.playerIndex] = skin;
+        this.update();
     }
 }
 
@@ -351,12 +342,12 @@ function showOverlay(text, duration, color) {
 
     overlay.classList.add("fadeIn");
 
-    setTimeout(function() {
+    setTimeout(function () {
         overlay.classList.remove("fadeIn");
 
         overlay.classList.add("fadeOut");
 
-        setTimeout(function() {
+        setTimeout(function () {
             overlay.style.display = "none";
             overlay.classList.remove("fadeOut");
         }, duration / 4);
