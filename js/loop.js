@@ -34,14 +34,16 @@ async function start(map)
     players[3] = "red";
     players[4] = "green";
 
-    let skins = new Array(5);
+    let skins = new Array(6);
     skins[0] = "circles";
     skins[1] = "clouds";
     skins[2] = "water";
     skins[3] = "none";
     skins[4] = "waves";
+    skins[5] = "carbon";
+    skins[6] = "binary";
 
-    const playerIndex = 1;
+    const playerIndex = 4;
 
     const game = new Game(skins, players, await initCountries(map), map, playerIndex);
 
@@ -63,10 +65,9 @@ async function start(map)
 
     document.getElementById("flexSwitchCheckDark").click();
 
-    const dropdownSkins = ["circles", "clouds", "water", "none", "waves"];
     const dropdownItems = document.getElementById("dropdownItems");
 
-    for(const skin of dropdownSkins)
+    for(const skin of skins)
     {
         let a = document.createElement('a');
         a.classList.add('dropdown-item');
