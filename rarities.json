@@ -3,7 +3,8 @@
     "Rare",
     "Super Rare",
     "Epic",
-    "Mythic"
+    "Mythic",
+    "Legendary"
   ],
   "skins": [
     {"name":"stone", "rarity":0},
@@ -12,6 +13,7 @@
     {"name":"circles", "rarity":2},
     {"name":"binary", "rarity":2},
     {"name":"water", "rarity":3},
-    {"name":"carbon", "rarity":3}
+    {"name":"carbon", "rarity":3},
+    {"name":"champion", "rarity":4}
   ]
 }

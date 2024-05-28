@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Open+Sans');
 
 :root {
-    --base-hue: 56;
+    --base-hue: 30;
     --complementary-hue: 300;
 
     --primary-color: hsl(var(--base-hue), 100%, 60%);

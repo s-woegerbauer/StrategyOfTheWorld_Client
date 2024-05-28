@@ -34,7 +34,7 @@ async function start(map)
     players[3] = "red";
     players[4] = "green";
 
-    let skins = new Array(6);
+    let skins = new Array(7);
     skins[0] = "circles";
     skins[1] = "clouds";
     skins[2] = "water";
@@ -42,6 +42,7 @@ async function start(map)
     skins[4] = "waves";
     skins[5] = "carbon";
     skins[6] = "binary";
+    skins[7] = "champion";
 
     const playerIndex = 4;
 

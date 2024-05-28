@@ -59,12 +59,6 @@ function getRandomSkinByInt(intValue, skins) {
     return skinKeys[randomIndex];
 }
 
-function getItems(skins, specificItem) {
-    return skins
-        .filter(skin => skin.rarity === specificItem)
-        .select(skin => skin.name);
-}
-
 function getHueValue(rarity)
 {
     switch (rarity)
@@ -77,8 +71,10 @@ function getHueValue(rarity)
             return 300;
         case 3:
             return 0;
-        default:
+        case 4:
             return 60;
+        default:
+            return 180;
     }
 }
 
@@ -90,8 +86,10 @@ function getRarity() {
         return 1;
     } else if (rand <= 0.9) {
         return 2;
-    } else {
+    } else if (rand <= 0.98) {
         return 3;
+    } else {
+        return 4;
     }
 }
 
