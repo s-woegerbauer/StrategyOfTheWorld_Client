@@ -18,7 +18,9 @@
 
 #box h1{
     position: absolute;
+    left: 50%;
     top: 100px;
+    transform: translateX(-50%);
     text-transform: uppercase;
     font-family: 'Opens-Sans', sans-serif;
     color: #fff;
@@ -27,6 +29,7 @@
     border-radius: 5px;
     text-align: center;
     transition: all 2s ease;
+    display: inline-block;
 }
 
 #box h1.active{
@@ -415,6 +418,7 @@ body{
 }
 
 #infoContainer{
+    scale: 0;
     z-index: 10000;
     position: absolute;
     top: 50%;
@@ -431,6 +435,7 @@ body{
 }
 
 #infoContainer.active{
+    scale: 1;
     opacity: 1;
 }
 .context h1{
