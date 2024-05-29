@@ -10,10 +10,13 @@
     {"name":"stone", "rarity":0},
     {"name":"waves", "rarity":0},
     {"name":"clouds", "rarity":1},
-    {"name":"circles", "rarity":2},
+    {"name":"circles", "rarity":1},
     {"name":"binary", "rarity":2},
+    {"name":"carbon", "rarity":2},
     {"name":"water", "rarity":3},
-    {"name":"carbon", "rarity":3},
-    {"name":"champion", "rarity":4}
+    {"name":"monkey", "rarity":3},
+    {"name":"jonas", "rarity":3},
+    {"name":"champion", "rarity":4},
+    {"name":"kiriko", "rarity":4}
   ]
 }

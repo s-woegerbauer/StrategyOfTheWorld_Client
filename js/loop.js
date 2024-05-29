@@ -34,7 +34,7 @@ async function start(map)
     players[3] = "red";
     players[4] = "green";
 
-    let skins = new Array(7);
+    let skins = new Array(11);
     skins[0] = "circles";
     skins[1] = "clouds";
     skins[2] = "water";
@@ -43,8 +43,11 @@ async function start(map)
     skins[5] = "carbon";
     skins[6] = "binary";
     skins[7] = "champion";
+    skins[8] = "monkey";
+    skins[9] = "kiriko";
+    skins[10] = "jonas";
 
-    const playerIndex = 4;
+    const playerIndex = 0;
 
     const game = new Game(skins, players, await initCountries(map), map, playerIndex);
 
