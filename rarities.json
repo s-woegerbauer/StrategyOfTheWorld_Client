@@ -11,6 +11,7 @@
     {"name":"waves", "rarity":0},
     {"name":"clouds", "rarity":1},
     {"name":"circles", "rarity":1},
+    {"name":"windows", "rarity":1},
     {"name":"binary", "rarity":2},
     {"name":"carbon", "rarity":2},
     {"name":"water", "rarity":3},
